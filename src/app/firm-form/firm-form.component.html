@@ -1,0 +1,147 @@
+<h1>Firm Data</h1>
+
+<form *ngIf="theForm" [formGroup]="theForm">
+  <h3>Firm Detail</h3>
+
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input
+      formControlName="name"
+      type="text"
+      class="form-control"
+      id="name"
+      placeholder="Enter name"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="identifier" class="form-label">Identifier</label>
+    <input
+      formControlName="identifier"
+      type="text"
+      class="form-control"
+      id="identifier"
+      placeholder="Enter identifier"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="sharingPercentage" class="form-label">Sharing Fee</label>
+    <input
+      formControlName="sharingPercentage"
+      type="text"
+      class="form-control"
+      id="sharingPercentage"
+      placeholder="Enter sharing fee"
+    />
+  </div>
+
+  <h3>Whitelable Info</h3>
+
+  <div class="mb-3">
+    <label for="url" class="form-label">URL</label>
+    <input
+      formControlName="url"
+      type="text"
+      class="form-control"
+      id="url"
+      placeholder="Enter url"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="mailSenderAddress" class="form-label">mailSenderAddress</label>
+    <input
+      formControlName="mailSenderAddress"
+      type="text"
+      class="form-control"
+      id="mailSenderAddress"
+      placeholder="Enter mailSenderAddress"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="mailSenderName" class="form-label">mailSenderName</label>
+    <input
+      formControlName="mailSenderName"
+      type="text"
+      class="form-control"
+      id="mailSenderName"
+      placeholder="Enter mailSenderName"
+    />
+  </div>
+
+  <hr />
+
+  <div class="row mb-5">
+    <div>
+      <label class="col-lg-4 col-form-label fw-bold fs-6">Manager List</label>
+    </div>
+
+    <div class="col">
+      <div formArrayName="managers">
+        <div class="row mb-3">
+          <div class="col-6">
+            <button
+              class="btn btn-sm btn-primary"
+              type="button"
+              [disabled]="managers.length >= 5"
+              (click)="addManager()"
+            >
+              Add Manager
+            </button>
+          </div>
+        </div>
+        <div *ngFor="let Manager of managers.controls; let i = index">
+          <div [formGroupName]="i" class="row mb-1">
+            <!-- Name -->
+            <div class="mb-3">
+              <input
+                formControlName="name"
+                type="text"
+                class="form-control"
+                placeholder="Enter name"
+              />
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <input
+                formControlName="email"
+                type="text"
+                class="form-control"
+                placeholder="Enter email"
+              />
+            </div>
+
+            <!-- Phone -->
+            <div class="mb-3">
+              <input
+                formControlName="phone"
+                type="text"
+                class="form-control"
+                placeholder="Enter phone"
+              />
+            </div>
+
+            <div class="col-2">
+              <button
+                class="btn btn-sm btn-danger"
+                type="button"
+                (click)="removeManager(i)"
+              >
+                X Remove Manager
+              </button>
+            </div>
+          </div>
+
+          <hr />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button (click)="submit()" class="btn btn-primary">Submit</button>
+</form>
+
+<hr />
+
+<div>
+  <a routerLink="/" class="btn btn-primary">Back</a>
+</div>
