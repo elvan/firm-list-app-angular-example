@@ -65,6 +65,10 @@ export class FirmFormComponent implements OnInit {
     }
   }
 
+  get whitelableInfo() {
+    return this.theForm?.get('whitelableInfo') as FormGroup;
+  }
+
   get managers() {
     return this.theForm?.get('managers') as FormArray;
   }
@@ -76,6 +80,7 @@ export class FirmFormComponent implements OnInit {
         name: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required]),
         phone: new FormControl('', [Validators.required]),
+        password: new FormControl('', [Validators.required]),
       })
     );
   }
@@ -85,36 +90,27 @@ export class FirmFormComponent implements OnInit {
   }
 
   submit() {
-    // const data = this.theForm.value;
-    const data = {
-      name: 'Oden',
-      identifier: 'oden123',
-      sharingPercentage: 2.5,
-      whitelableInfo: {
-        url: 'https://oden.org',
-        mailSenderAddress: 'noreply@oden.org',
-        mailSenderName: 'oden team',
-      },
-      managers: [
-        {
-          name: ' Nirmala Ruslan ',
-          email: 'ruslan@oden.org',
-          password: 'iousehr12312k3j',
-          phone: '081323211233',
-        },
-        {
-          name: ' Cahaya Guntur',
-          email: 'guntur@oden.org',
-          password: 'iousehr12312k3j',
-          phone: '081323211233',
-        },
-      ],
-    };
+    // const data = {
+    //   name: this.theForm.value.name,
+    //   identifier: this.theForm.value.identifier,
+    //   sharingPercentage: this.theForm.value.sharingPercentage,
+    //   whitelableInfo: {
+    //     url: this.whitelableInfo?.value.url,
+    //     mailSenderAddress: this.whitelableInfo?.value.mailSenderAddress,
+    //     mailSenderName: this.whitelableInfo?.value.mailSenderName,
+    //   },
+    //   managers: this.theForm.value.managers,
+    // };
 
     this.http
       .post(
         'https://dev.innov.id/bara-mcp/public/api/v1/firms',
-        JSON.stringify(data)
+        JSON.stringify(this.theForm.value),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
       )
       .subscribe({
         next: (response: any) => {

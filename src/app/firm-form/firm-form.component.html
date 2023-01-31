@@ -36,37 +36,40 @@
 
   <h3>Whitelable Info</h3>
 
-  <div class="mb-3">
-    <label for="url" class="form-label">URL</label>
-    <input
-      formControlName="url"
-      type="text"
-      class="form-control"
-      id="url"
-      placeholder="Enter url"
-    />
+  <div formGroupName="whitelableInfo">
+    <div class="mb-3">
+      <label for="url" class="form-label">URL</label>
+      <input
+        formControlName="url"
+        type="text"
+        class="form-control"
+        id="url"
+        placeholder="Enter url"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="mailSenderAddress" class="form-label"
+        >mailSenderAddress</label
+      >
+      <input
+        formControlName="mailSenderAddress"
+        type="text"
+        class="form-control"
+        id="mailSenderAddress"
+        placeholder="Enter mailSenderAddress"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="mailSenderName" class="form-label">mailSenderName</label>
+      <input
+        formControlName="mailSenderName"
+        type="text"
+        class="form-control"
+        id="mailSenderName"
+        placeholder="Enter mailSenderName"
+      />
+    </div>
   </div>
-  <div class="mb-3">
-    <label for="mailSenderAddress" class="form-label">mailSenderAddress</label>
-    <input
-      formControlName="mailSenderAddress"
-      type="text"
-      class="form-control"
-      id="mailSenderAddress"
-      placeholder="Enter mailSenderAddress"
-    />
-  </div>
-  <div class="mb-3">
-    <label for="mailSenderName" class="form-label">mailSenderName</label>
-    <input
-      formControlName="mailSenderName"
-      type="text"
-      class="form-control"
-      id="mailSenderName"
-      placeholder="Enter mailSenderName"
-    />
-  </div>
-
   <hr />
 
   <div class="row mb-5">
@@ -90,7 +93,6 @@
         </div>
         <div *ngFor="let Manager of managers.controls; let i = index">
           <div [formGroupName]="i" class="row mb-1">
-            <!-- Name -->
             <div class="mb-3">
               <input
                 formControlName="name"
@@ -100,7 +102,6 @@
               />
             </div>
 
-            <!-- Email -->
             <div class="mb-3">
               <input
                 formControlName="email"
@@ -110,13 +111,21 @@
               />
             </div>
 
-            <!-- Phone -->
             <div class="mb-3">
               <input
                 formControlName="phone"
                 type="text"
                 class="form-control"
                 placeholder="Enter phone"
+              />
+            </div>
+
+            <div class="mb-3">
+              <input
+                formControlName="password"
+                type="password"
+                class="form-control"
+                placeholder="Enter password"
               />
             </div>
 
